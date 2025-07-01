@@ -1,4 +1,5 @@
 - National Scholarship, 2023-2024.  
-- Shanghai Jiao Tong University Excellent Undergraduate Award (Level B), 2023-2024.
+- 2023 SJTU Undergraduate Excellent Scholarship (Class B).
 - National Scholarship, 2022-2023. 
-- Shanghai Jiao Tong University Excellent Undergraduate Award (Level A), 2023-2024.
+- 2022 SJTU Undergraduate Excellent Scholarship (Class A).
+- National First Prize in Chinese Chemistry Olympiad, 2021.

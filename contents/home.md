@@ -1,4 +1,4 @@
-[![Cloudflipper](https://img.shields.io/badge/XX-github-blue?logo=github)](https://github.com/cloudflipper)
+[![Cloudflipper](https://img.shields.io/badge/Cloudflipper-github-blue?logo=github)](https://github.com/cloudflipper)
 
 I'm currently pursuing a Bachelor's degree in Computer Science at the University of Michigan.
 
@@ -8,10 +8,10 @@ I'm currently pursuing a Bachelor's degree in Computer Science at the University
 
 #### Education  
 **University of Michigan**, Bachelor of Computer Science 2024 – 2026(exp)  
-• GPA: 3.97
+• GPA: 3.97<br> 
 
-**Shanghai Jiao Tong University**, Bachelor of Mechnical Engineering 2022-2026(exp) <br>  
+**Shanghai Jiao Tong University**, Bachelor of Mechnical Engineering 2022-2026(exp)  
 • GPA: 3.90, rank 2/61
 
 #### Research Interests  
-XX, XX, XX, XX.
+Nonlinear Dynamics and Control, Reinforcement Learning
