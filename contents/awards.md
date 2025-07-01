@@ -1,3 +1,4 @@
-- 校级一等奖学金, 2022.  
-
-- Outstanding Graduation Thesis, XXX University, 2023. 
+- National Scholarship, 2023-2024.  
+- Shanghai Jiao Tong University Excellent Undergraduate Award (Level B), 2023-2024.
+- National Scholarship, 2022-2023. 
+- Shanghai Jiao Tong University Excellent Undergraduate Award (Level A), 2023-2024.
