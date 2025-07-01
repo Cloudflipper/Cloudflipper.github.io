@@ -1,1 +1,1 @@
--Teaching Assistant for Computer Vision (ECE 4880J)
+- Teaching Assistant for Computer Vision (ECE 4880J)

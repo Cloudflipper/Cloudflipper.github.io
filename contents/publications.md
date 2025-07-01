@@ -1,1 +1,1 @@
-- Graph-based Deep Reinforcement Learning for 3-bar Tensegrity Robot Locomotion
+- Graph-based Deep Reinforcement Learning for 3-bar Tensegrity Robot Locomotion (Under submission)
