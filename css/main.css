@@ -961,8 +961,8 @@ body.mobile-menu-open {
 }
 :root {
   --color-mode: "light";
-  --body-bg-color: #e8f0f8;
-  --board-bg-color: #fafcfd;
+  --body-bg-color: #dce6f0;
+  --board-bg-color: #f0f3f8;
   --text-color: #3c4858;
   --sec-text-color: #718096;
   --post-text-color: #2c3e50;
