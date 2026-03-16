@@ -1,0 +1,99 @@
+/* 页面保存为图片按钮样式 */
+#save-image-btn {
+  position: fixed;
+  top: 140px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #dce6f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #2f4154;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+#save-image-btn:hover {
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+#save-image-btn:active {
+  transform: scale(0.95);
+}
+
+#save-image-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+#save-image-btn.loading {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 暗色模式适配 */
+[data-user-color-scheme="dark"] #save-image-btn {
+  background-color: rgba(37, 45, 56, 0.9);
+  border-color: #435266;
+  color: #c4c6c9;
+}
+
+[data-user-color-scheme="dark"] #save-image-btn:hover {
+  background-color: #252d38;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 消息提示 */
+.save-image-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.save-image-message.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  #save-image-btn {
+    top: 120px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .save-image-message {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+}
