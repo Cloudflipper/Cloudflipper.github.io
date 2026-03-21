@@ -19,23 +19,25 @@
   <meta name="author" content="Mumo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="之前在法国有人隔着八个时区亲亲搂搂抱抱时，只需要学点Je、Nous、ne pas还不需要担心成绩时有那么好的酒喝">
+    <meta name="description" content="This project visualizes travel time accessibility across Shanghai using a locally deployed Open Source Routing Machine (OSRM) server.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生活也是有马太效应的">
-<meta property="og:url" content="https://cloudflipper.github.io/2024/09/24/%E5%96%9D%E9%85%92%E5%A4%9A%E5%B0%91%E8%A6%81%E5%86%99%E4%B8%A4%E5%8F%A5/index.html">
+<meta property="og:title" content="Shanghai OSRM Travel Time Visualization">
+<meta property="og:url" content="https://cloudflipper.github.io/2025/11/09/Shanghai-OSRM-Travel-Time-Visualization/index.html">
 <meta property="og:site_name" content="木猫的窝">
-<meta property="og:description" content="之前在法国有人隔着八个时区亲亲搂搂抱抱时，只需要学点Je、Nous、ne pas还不需要担心成绩时有那么好的酒喝">
+<meta property="og:description" content="This project visualizes travel time accessibility across Shanghai using a locally deployed Open Source Routing Machine (OSRM) server.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-24T04:00:00.000Z">
+<meta property="og:image" content="https://github.com/Cloudflipper/Distance_plotter">
+<meta property="article:published_time" content="2025-11-09T05:00:00.000Z">
 <meta property="article:modified_time" content="2026-03-15T04:00:00.000Z">
 <meta property="article:author" content="Mumo">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/Cloudflipper/Distance_plotter">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>生活也是有马太效应的 - 木猫的窝</title>
+  <title>Shanghai OSRM Travel Time Visualization - 木猫的窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -346,13 +348,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default-banner.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="生活也是有马太效应的"></span>
+            <span id="subtitle" data-typed-text="Shanghai OSRM Travel Time Visualization"></span>
           
         </div>
 
@@ -363,8 +365,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-24 00:00" pubdate>
-          2024年9月24日
+        <time datetime="2025-11-09 00:00" pubdate>
+          2025年11月9日
         </time>
       </span>
     
@@ -375,7 +377,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          279 字
+          2.4k 字
         
       </span>
     
@@ -386,7 +388,7 @@
         
         
         
-          3 分钟
+          21 分钟
         
       </span>
     
@@ -425,12 +427,99 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">生活也是有马太效应的</h1>
+            <h1 id="seo-header">Shanghai OSRM Travel Time Visualization</h1>
             
             
               <div class="markdown-body">
                 
-                <p>喝酒确实好。前日莫名有种极强烈的惆怅，托人买了瓶白葡萄酒，两口下肚便把惆怅的情绪浇灭了，甚至还能冷静下来做两道又臭又长的算法题。<br>先前在法国香槟省交换，六七欧元买的酒，又甜又不滞涩。相较之下其实这瓶加州的酒又贵又不好喝，七百五十毫升竟要一百四十人民币，倒在碗里醒了许久都堪称苦酒入喉，催人落泪。让人不由感慨生活也是有马太效应的，之前在法国有人隔着八个时区亲亲搂搂抱抱时，只需要学点Je、Nous、ne pas还不需要担心成绩时有那么好的酒喝，现在却只能在深夜喝着苦酒一个人往十几页的latex上面写醉话了——早上起来还要头疼，随着之前焦虑的一并像潮水一样涌上来。</p>
+                <p>This project generates a high-resolution travel time heatmap from a given origin point in Shanghai using a locally deployed <strong>OSRM (Open Source Routing Machine)</strong> backend.<br>It builds a uniform grid of latitude-longitude coordinates, queries OSRM for estimated driving times, filters out water regions, and visualizes the results on an OpenStreetMap base map.</p>
+<p>Click <img src="https://github.com/Cloudflipper/Distance_plotter" srcset="/img/loading.gif" lazyload alt="HERE"> to go to the project.</p>
+<h2 id="⚙️-Parameters"><a href="#⚙️-Parameters" class="headerlink" title="⚙️ Parameters"></a>⚙️ Parameters</h2><p>At the top of <code>runpic.py</code>, you can adjust the following parameters to control the experiment:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>OSRM_URL</code></td>
+<td>URL of the local OSRM server</td>
+<td><code>&quot;http://localhost:5000&quot;</code></td>
+</tr>
+<tr>
+<td><code>PROFILE</code></td>
+<td>OSRM routing profile (<code>driving</code>, <code>walking</code>, <code>cycling</code>)</td>
+<td><code>&quot;driving&quot;</code></td>
+</tr>
+<tr>
+<td><code>ORIGIN_LAT</code></td>
+<td>Latitude of the origin point (e.g., SJTU dormitory)</td>
+<td><code>31.198606</code></td>
+</tr>
+<tr>
+<td><code>ORIGIN_LON</code></td>
+<td>Longitude of the origin point</td>
+<td><code>121.432725</code></td>
+</tr>
+<tr>
+<td><code>LAT_MIN</code>, <code>LAT_MAX</code></td>
+<td>Latitude bounds for the analysis region</td>
+<td><code>30.7</code>, <code>31.35</code></td>
+</tr>
+<tr>
+<td><code>LON_MIN</code>, <code>LON_MAX</code></td>
+<td>Longitude bounds for the analysis region</td>
+<td><code>121.18</code>, <code>121.86</code></td>
+</tr>
+<tr>
+<td><code>STEP</code></td>
+<td>Grid step in degrees (smaller &#x3D; denser grid, slower runtime)</td>
+<td><code>0.001</code></td>
+</tr>
+<tr>
+<td><code>output_csv</code></td>
+<td>Path to save raw travel-time data</td>
+<td><code>&quot;osrm_times.csv&quot;</code></td>
+</tr>
+<tr>
+<td><code>output_png</code></td>
+<td>Path to save the final visualization</td>
+<td><code>&quot;osrm_times_map_shanghai.png&quot;</code></td>
+</tr>
+</tbody></table>
+<h2 id="🧭-How-to-Use"><a href="#🧭-How-to-Use" class="headerlink" title="🧭 How to Use"></a>🧭 How to Use</h2><h3 id="1-Prepare-Environment"><a href="#1-Prepare-Environment" class="headerlink" title="1. Prepare Environment"></a>1. <strong>Prepare Environment</strong></h3><p>Install required dependencies (Python ≥3.10):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda create -n osrm python=3.10<br>conda activate osrm<br>pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-Start-Local-OSRM-Server"><a href="#2-Start-Local-OSRM-Server" class="headerlink" title="2. Start Local OSRM Server"></a>2. <strong>Start Local OSRM Server</strong></h3><p>Download Shanghai OSM data and build the routing graph:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://download.geofabrik.de/asia/china/shanghai-latest.osm.pbf  <br>docker pull osrm/osrm-backend<br>docker run -t -i -p 5000:5000 -v <span class="hljs-variable">$PWD</span>:/data osrm/osrm-backend osrm-extract -p /opt/car.lua /data/shanghai-latest.osm.pbf<br>docker run -t -i -p 5000:5000 -v <span class="hljs-variable">$PWD</span>:/data osrm/osrm-backend osrm-partition /data/shanghai-latest.osrm<br>docker run -t -i -p 5000:5000 -v <span class="hljs-variable">$PWD</span>:/data osrm/osrm-backend osrm-customize /data/shanghai-latest.osrm<br>docker run -t -i -p 5000:5000 -v <span class="hljs-variable">$PWD</span>:/data osrm/osrm-backend osrm-routed --algorithm mld /data/shanghai-latest.osrm<br></code></pre></td></tr></table></figure>
+
+<p>Leave the OSRM server running on port <code>5000</code>.</p>
+<h3 id="3-Run-the-Script"><a href="#3-Run-the-Script" class="headerlink" title="3. Run the Script"></a>3. <strong>Run the Script</strong></h3><p>In another terminal:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python runpic.py<br></code></pre></td></tr></table></figure>
+
+<p>The script will:</p>
+<ol>
+<li>Generate a uniform geographic grid across Shanghai.  </li>
+<li>Query OSRM in batches for travel times from the origin point.  </li>
+<li>Remove grid points falling inside Shanghai’s rivers and coastal waters.  </li>
+<li>Render and save a colored travel-time map.</li>
+</ol>
+<h3 id="4-Outputs"><a href="#4-Outputs" class="headerlink" title="4. Outputs"></a>4. <strong>Outputs</strong></h3><ul>
+<li><strong>Map image:</strong><br><code>osrm_times_map_shanghai.png</code> — A heatmap of travel times:<ul>
+<li>Blue → fast &#x2F; close</li>
+<li>Yellow → medium</li>
+<li>Red → slow &#x2F; distant<br>(Capped at 3600 s; all values above appear as red)</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-Notes"><a href="#5-Notes" class="headerlink" title="5. Notes"></a>5. <strong>Notes</strong></h3><ul>
+<li>The base map tiles are fetched from <strong>OpenStreetMap Mapnik</strong>.  </li>
+<li>OSMnx is used to retrieve Shanghai’s administrative boundary and water polygons.  </li>
+<li>You can adjust <code>cmap</code>, <code>vmin</code>, <code>vmax</code>, and <code>alpha</code> to tune visualization style.  </li>
+<li>Increasing grid resolution (<code>STEP</code>) will produce finer results but may increase runtime.</li>
+</ul>
 
                 
               </div>
@@ -449,7 +538,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A2%8E%E7%AC%94/" class="category-chain-item">碎笔</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
   
   
 
@@ -469,15 +558,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>生活也是有马太效应的</div>
-      <div>https://cloudflipper.github.io/2024/09/24/喝酒多少要写两句/</div>
+      <div>Shanghai OSRM Travel Time Visualization</div>
+      <div>https://cloudflipper.github.io/2025/11/09/Shanghai-OSRM-Travel-Time-Visualization/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>创作于</div>
-          <div>2024年9月24日</div>
+          <div>2025年11月9日</div>
         </div>
       
       
@@ -498,9 +587,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/10/%E5%B7%9D%E9%A9%AC%E5%90%88%E6%B5%81%EF%BC%9A%E7%89%B9%E6%9C%97%E6%99%AE%E6%94%BF%E5%BA%9C%E7%9A%84%E5%8F%AF%E8%83%BD%E6%94%BF%E7%AD%96%E5%92%8C%E8%BF%B7%E6%80%9D/" title="川马合流：特朗普政府的可能政策和迷思">
+                      <a href="/2025/12/02/%E6%9C%A8%E7%8C%AB%E7%9A%84%E5%89%8D%E5%8D%81%E5%85%AB%E5%B9%B4%EF%BC%882%EF%BC%89-As-a-local-minority/" title="木猫的少年时代（2） As a local minority">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">川马合流：特朗普政府的可能政策和迷思</span>
+                        <span class="hidden-mobile">木猫的少年时代（2） As a local minority</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -508,8 +597,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/19/%E5%85%B3%E4%BA%8E%E5%A7%9C%E8%90%8D%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A7%82%E7%82%B9/" title="关于姜萍事件的一些观点">
-                        <span class="hidden-mobile">关于姜萍事件的一些观点</span>
+                      <a href="/2025/07/09/%E5%89%8D%E7%8E%B0%E4%BB%A3%E7%A6%81%E9%94%A2%E4%BA%BA%EF%BC%8C%E7%8E%B0%E4%BB%A3%E5%8E%8B%E8%BF%AB%E4%BA%BA%EF%BC%8C%E5%90%8E%E7%8E%B0%E4%BB%A3%E9%81%97%E5%BC%83%E4%BA%BA/" title="前现代禁锢人，现代压迫人，后现代遗弃人">
+                        <span class="hidden-mobile">前现代禁锢人，现代压迫人，后现代遗弃人</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
