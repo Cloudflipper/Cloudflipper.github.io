@@ -4,8 +4,8 @@
   let currentSize = 'normal'; // 'normal', 'large', 'larger'
   const sizes = {
     normal: { scale: 1, label: 'A' },
-    large: { scale: 1.15, label: 'A+' },
-    larger: { scale: 1.3, label: 'A++' }
+    large: { scale: 1.25, label: 'A+' },
+    larger: { scale: 1.5, label: 'A++' }
   };
 
   // 从 localStorage 读取保存的字体大小
