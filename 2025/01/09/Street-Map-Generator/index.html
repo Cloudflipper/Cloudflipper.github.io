@@ -431,32 +431,38 @@
             
               <div class="markdown-body">
                 
-                <h2 id="📖-Overview"><a href="#📖-Overview" class="headerlink" title="📖 Overview"></a>📖 Overview</h2><p><strong>Street Map Generator</strong> is a Python-based automation tool that can <strong>generate high-resolution city map mosaics</strong>.<br>It uses Selenium to automatically navigate Baidu Maps at specific coordinates, capture screenshots of urban areas, crop them precisely, and merge them into one complete stitched map.</p>
+                <h2 id="📖-Overview">📖 Overview</h2>
+<p><strong>Street Map Generator</strong> is a Python-based automation tool that can <strong>generate high-resolution city map mosaics</strong>.<br>
+It uses Selenium to automatically navigate Baidu Maps at specific coordinates, capture screenshots of urban areas, crop them precisely, and merge them into one complete stitched map.</p>
 <p>This tool can be used for:</p>
 <ul>
-<li>City visualization and topographic studies  </li>
-<li>Urban planning or UI prototyping  </li>
-<li>Background map generation for data visualization  </li>
+<li>City visualization and topographic studies</li>
+<li>Urban planning or UI prototyping</li>
+<li>Background map generation for data visualization</li>
 <li>Simulation environments for robotics or autonomous systems</li>
 </ul>
-<p>Click <a target="_blank" rel="noopener" href="https://github.com/Cloudflipper/street_map">HERE</a> to go to the project.<br>See <a target="_blank" rel="noopener" href="https://github.com/Cloudflipper/street_map/blob/main/SHANGHAI.png">SHANGHAI.png</a> as an example. The picture without blackline can serve as an example.</p>
+<p>Click <a target="_blank" rel="noopener" href="https://github.com/Cloudflipper/street_map">HERE</a> to go to the project.<br>
+See <a target="_blank" rel="noopener" href="https://github.com/Cloudflipper/street_map/blob/main/SHANGHAI.png">SHANGHAI.png</a> as an example. The picture without blackline can serve as an example.</p>
 <hr>
-<h2 id="🧩-Features"><a href="#🧩-Features" class="headerlink" title="🧩 Features"></a>🧩 Features</h2><ul>
-<li>🌐 <strong>Automated map capture</strong> using Selenium and ChromeDriver  </li>
-<li>📸 <strong>Precise image cropping</strong> with OpenCV to remove browser frames  </li>
-<li>🧱 <strong>Automatic image stitching</strong> via Pillow  </li>
-<li>⚙️ <strong>Configurable coordinate range and resolution</strong>  </li>
+<h2 id="🧩-Features">🧩 Features</h2>
+<ul>
+<li>🌐 <strong>Automated map capture</strong> using Selenium and ChromeDriver</li>
+<li>📸 <strong>Precise image cropping</strong> with OpenCV to remove browser frames</li>
+<li>🧱 <strong>Automatic image stitching</strong> via Pillow</li>
+<li>⚙️ <strong>Configurable coordinate range and resolution</strong></li>
 <li>🧮 <strong>Extensible coordinate base</strong> for different cities (e.g., Shanghai, Suzhou)</li>
 </ul>
 <hr>
-<h2 id="🧠-File-Descriptions"><a href="#🧠-File-Descriptions" class="headerlink" title="🧠 File Descriptions"></a>🧠 File Descriptions</h2><table>
+<h2 id="🧠-File-Descriptions">🧠 File Descriptions</h2>
+<table>
 <thead>
 <tr>
 <th>File</th>
 <th>Description</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>get_pic.py</code></td>
 <td>Main script — handles map fetching, cropping, and stitching</td>
 </tr>
@@ -468,35 +474,41 @@
 <td><code>click_test.py</code></td>
 <td>Mouse coordinate debugging tool for calibration</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <hr>
-<h2 id="🧰-Dependencies"><a href="#🧰-Dependencies" class="headerlink" title="🧰 Dependencies"></a>🧰 Dependencies</h2><p>Install required packages via pip:</p>
+<h2 id="🧰-Dependencies">🧰 Dependencies</h2>
+<p>Install required packages via pip:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install selenium opencv-python pillow tqdm pyautogui pywin32<br></code></pre></td></tr></table></figure>
-
 <p>You will also need:</p>
 <ul>
 <li><strong>Google Chrome</strong></li>
 <li><strong>ChromeDriver</strong> (version must match your Chrome browser)</li>
 </ul>
 <hr>
-<h2 id="⚙️-Usage"><a href="#⚙️-Usage" class="headerlink" title="⚙️ Usage"></a>⚙️ Usage</h2><h3 id="1️⃣-Set-Parameters"><a href="#1️⃣-Set-Parameters" class="headerlink" title="1️⃣ Set Parameters"></a>1️⃣ Set Parameters</h3><p>In <code>get_pic.py</code>, adjust parameters such as base coordinates and step size:</p>
+<h2 id="⚙️-Usage">⚙️ Usage</h2>
+<h3 id="1️⃣-Set-Parameters">1️⃣ Set Parameters</h3>
+<p>In <code>get_pic.py</code>, adjust parameters such as base coordinates and step size:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Base coordinates for Baidu Map</span><br>BASE_X = <span class="hljs-number">13386335</span>    <span class="hljs-comment"># Suzhou</span><br>BASE_Y = <span class="hljs-number">3583355</span><br><br><span class="hljs-comment"># Step size in map units</span><br>STEP_X = <span class="hljs-number">7000</span><br>STEP_Y = <span class="hljs-number">4000</span><br><br><span class="hljs-comment"># Capture grid size</span><br><span class="hljs-keyword">for</span> index_x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">19</span>):      <span class="hljs-comment"># horizontal range</span><br>    <span class="hljs-keyword">for</span> index_y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">41</span>):  <span class="hljs-comment"># vertical range</span><br>        get_original_pic(index_x, index_y)<br></code></pre></td></tr></table></figure>
-
-<h3 id="2️⃣-Run-the-Program"><a href="#2️⃣-Run-the-Program" class="headerlink" title="2️⃣ Run the Program"></a>2️⃣ Run the Program</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python get_pic.py<br></code></pre></td></tr></table></figure>
-
+<h3 id="2️⃣-Run-the-Program">2️⃣ Run the Program</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python get_pic.py<br></code></pre></td></tr></table></figure>
 <p>The script will:</p>
 <ol>
-<li>Automatically open Chrome and navigate to target coordinates  </li>
-<li>Take screenshots and save them to <code>pics3/</code>  </li>
+<li>Automatically open Chrome and navigate to target coordinates</li>
+<li>Take screenshots and save them to <code>pics3/</code></li>
 <li>Automatically stitch them into one large image, e.g. <code>Suzhou.png</code></li>
 </ol>
 <hr>
-<h2 id="🖼️-Output-Example"><a href="#🖼️-Output-Example" class="headerlink" title="🖼️ Output Example"></a>🖼️ Output Example</h2><p>The final resolution depends on the number of rows and columns as well as image dimensions.<br>Example: with <code>19 × 41</code> tiles of <code>1236×706</code> pixels → about <strong>23,484 × 28,946 px</strong> stitched image.</p>
+<h2 id="🖼️-Output-Example">🖼️ Output Example</h2>
+<p>The final resolution depends on the number of rows and columns as well as image dimensions.<br>
+Example: with <code>19 × 41</code> tiles of <code>1236×706</code> pixels → about <strong>23,484 × 28,946 px</strong> stitched image.</p>
 <hr>
-<h2 id="⚠️-Notes"><a href="#⚠️-Notes" class="headerlink" title="⚠️ Notes"></a>⚠️ Notes</h2><ul>
-<li>Excessive requests may trigger anti-bot mechanisms — use random <code>sleep()</code> delays.  </li>
-<li>The script will open many browser windows; do <strong>not</strong> close them manually.  </li>
-<li>Works best on <strong>Windows</strong> (uses <code>win32api</code> and <code>ctypes.windll</code> for mouse control).<br>Mac&#x2F;Linux users need to replace mouse-related calls.</li>
+<h2 id="⚠️-Notes">⚠️ Notes</h2>
+<ul>
+<li>Excessive requests may trigger anti-bot mechanisms — use random <code>sleep()</code> delays.</li>
+<li>The script will open many browser windows; do <strong>not</strong> close them manually.</li>
+<li>Works best on <strong>Windows</strong> (uses <code>win32api</code> and <code>ctypes.windll</code> for mouse control).<br>
+Mac/Linux users need to replace mouse-related calls.</li>
 </ul>
 
                 
