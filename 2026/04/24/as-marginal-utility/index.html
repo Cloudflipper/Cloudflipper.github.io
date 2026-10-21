@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cloudflipper.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1:not(details *),h2:not(details *),h3:not(details *),h4:not(details *),h5:not(details *),h6:not(details *)","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"cloudflipper.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":false,"placement":"right","headingSelector":"h1:not(details *),h2:not(details *),h3:not(details *),h4:not(details *),h5:not(details *),h6:not(details *)","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -809,9 +809,16 @@
     function isExpandAllEnabled() {
       return CONFIG.toc && CONFIG.toc.expand_all === true;
     }
-    function expandAllToc() {
-      if (!isExpandAllEnabled()) { return; }
-      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    // Use actual heading tags: an H2 -> H4 jump still hides H4 by default.
+    // Keep tocbot fully expanded internally so scrolling preserves manual choices.
+    function applyDefaultTocState() {
+      jQuery('#toc-body .toc-list-item > ol').each(function() {
+        var link = this.querySelector('.tocbot-link');
+        var heading = link && document.getElementById(decodeURIComponent(link.hash.slice(1)));
+        var level = heading ? Number(heading.tagName.slice(1)) : 0;
+        jQuery(this).addClass('tocbot-is-collapsible')
+          .toggleClass('tocbot-is-collapsed', !isExpandAllEnabled() && level >= 4);
+      });
     }
     function updateTocToggle($li, $childList) {
       var $toggle = $li.children('.toc-toggle');
@@ -822,7 +829,6 @@
         .toggleClass('toc-toggle-expanded', !collapsed);
     }
     function bindTocToggle() {
-      if (!isExpandAllEnabled()) { return; }
       jQuery('#toc-body .toc-list-item').each(function() {
         var $li = jQuery(this);
         var $childList = $li.children('ol');
@@ -857,10 +863,11 @@
             updateTocToggle($li, $list);
           });
         });
-        jQuery('#toc-body ol').each(function() {
-          window.__tocToggleObserver.observe(this, { attributes: true });
-        });
       }
+      window.__tocToggleObserver.disconnect();
+      jQuery('#toc-body ol').each(function() {
+        window.__tocToggleObserver.observe(this, { attributes: true });
+      });
     }
     var tocConfig = Object.assign({
       tocSelector     : '#toc-body',
@@ -874,14 +881,12 @@
       includeTitleTags: true,
       headingsOffset  : -boardTop,
     }, CONFIG.toc);
-    if (isExpandAllEnabled()) {
-      tocConfig.collapseDepth = 6;
-    }
+    tocConfig.collapseDepth = 6;
     window.tocbot.init(tocConfig);
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
-    expandAllToc();
+    applyDefaultTocState();
     bindTocToggle();
 
     Fluid.events.registerRefreshCallback(function() {
@@ -894,7 +899,7 @@
         if (toc.find('.toc-list-item').length > 0) {
           toc.css('visibility', 'visible');
         }
-        expandAllToc();
+        applyDefaultTocState();
         bindTocToggle();
       }
     });
